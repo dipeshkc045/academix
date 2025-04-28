@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/IDENTIFIER-SERVICE/IDENTIFIER-SERVICE.iml" filepath="$PROJECT_DIR$/IDENTIFIER-SERVICE/IDENTIFIER-SERVICE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IDENTIFIER-SERVICE.main.iml" filepath="$PROJECT_DIR$/.idea/modules/IDENTIFIER-SERVICE.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IDENTIFIER-SERVICE.test.iml" filepath="$PROJECT_DIR$/.idea/modules/IDENTIFIER-SERVICE.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/USER-SERVICE.main.iml" filepath="$PROJECT_DIR$/.idea/modules/USER-SERVICE.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/academix.iml" filepath="$PROJECT_DIR$/.idea/academix.iml" />
     </modules>

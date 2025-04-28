@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: IDENTIFIER-SERVICE
-
-server:
-  port: 8022

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -31,7 +30,7 @@ public class TeacherServiceImpl implements TeacherService {
         List<TeacherResponseDTO> teacherResponseDTOList = teacherRepository.findAll()
                                                                            .stream()
                                                                            .map(teacherResponseMapper::toDto)
-                                                                           .collect(Collectors.toList());
+                                                                           .toList();
 
         return ServiceResponse.<List<TeacherResponseDTO>>builder()
                               .status(Status.SUCCESS.name())
@@ -45,7 +44,8 @@ public class TeacherServiceImpl implements TeacherService {
     public ServiceResponse<TeacherResponseDTO> getTeacherById(String id) {
         TeacherResponseDTO teacherResponseDTO = teacherRepository.findById(id)
                                                                  .map(teacherResponseMapper::toDto)
-                                                                 .orElseThrow(() -> new EntityNotFoundException("Teacher not found with id: " + id));
+                                                                 .orElseThrow(() -> new EntityNotFoundException(
+                                                                     "Teacher not found with id: " + id));
 
         return ServiceResponse.<TeacherResponseDTO>builder()
                               .status(Status.SUCCESS.name())

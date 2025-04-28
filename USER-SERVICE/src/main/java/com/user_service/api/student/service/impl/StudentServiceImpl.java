@@ -12,10 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
         List<StudentResponseDTO> studentResponseDTOList = studentRepository.findAll()
                                                                            .stream()
                                                                            .map(studentResponseMapper::toDto)
-                                                                           .collect(Collectors.toList());
+                                                                           .toList();
 
         return ServiceResponse.<List<StudentResponseDTO>>builder()
                               .status(Status.SUCCESS.name())
@@ -45,7 +42,8 @@ public class StudentServiceImpl implements StudentService {
     public ServiceResponse<StudentResponseDTO> getStudentById(String id) {
         StudentResponseDTO studentResponseDTO = studentRepository.findById(id)
                                                                  .map(studentResponseMapper::toDto)
-                                                                 .orElseThrow(() -> new EntityNotFoundException("Student not found with id: " + id));
+                                                                 .orElseThrow(() -> new EntityNotFoundException(
+                                                                     "Student not found with id: " + id));
 
         return ServiceResponse.<StudentResponseDTO>builder()
                               .status(Status.SUCCESS.name())
@@ -72,7 +70,8 @@ public class StudentServiceImpl implements StudentService {
     public ServiceResponse<StudentResponseDTO> updateStudent(String id, StudentRequestDTO studentRequestDTO) {
 
         Student existingStudent = studentRepository.findById(id)
-                                                   .orElseThrow(() -> new EntityNotFoundException("Student not found with id: " + id));
+                                                   .orElseThrow(() -> new EntityNotFoundException(
+                                                       "Student not found with id: " + id));
 
         updateEntity(studentRequestDTO, existingStudent);
         Student savedStudent = studentRepository.save(existingStudent);
