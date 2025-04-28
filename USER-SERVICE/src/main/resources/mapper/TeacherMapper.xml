@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.user_service.mapper.TeacherMapper">
+<mapper namespace="com.userservice.mapper.TeacherMapper">
     
-    <resultMap id="teacherResultMap" type="com.user_service.api.teacher.model.table.Teacher">
+    <resultMap id="teacherResultMap" type="com.userservice.api.teacher.model.table.Teacher">
         <id property="id" column="id"/>
         <result property="firstName" column="first_name"/>
         <result property="lastName" column="last_name"/>
@@ -21,7 +21,7 @@
         {CALL sp_get_teacher_by_id(#{id})}
     </select>
 
-    <insert id="create" parameterType="com.user_service.api.teacher.model.table.Teacher" useGeneratedKeys="true" keyProperty="id">
+    <insert id="create" parameterType="com.userservice.api.teacher.model.table.Teacher" useGeneratedKeys="true" keyProperty="id">
         {CALL sp_create_teacher(
             #{firstName},
             #{lastName},
@@ -33,7 +33,7 @@
         )}
     </insert>
 
-    <update id="update" parameterType="com.user_service.api.teacher.model.table.Teacher">
+    <update id="update" parameterType="com.userservice.api.teacher.model.table.Teacher">
         {CALL sp_update_teacher(
             #{id},
             #{firstName},
