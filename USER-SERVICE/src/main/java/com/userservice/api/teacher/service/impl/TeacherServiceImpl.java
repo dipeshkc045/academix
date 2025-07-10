@@ -14,8 +14,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +41,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public ServiceResponse<TeacherResponseDTO> getTeacherById(String id) {
+    public ServiceResponse<TeacherResponseDTO> getTeacherById(UUID id) {
         TeacherResponseDTO teacherResponseDTO = teacherRepository.findById(id)
                                                                  .map(teacherResponseMapper::toDto)
                                                                  .orElseThrow(() -> new EntityNotFoundException(
@@ -70,7 +70,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public ServiceResponse<TeacherResponseDTO> updateTeacher(String id, TeacherRequestDTO teacherRequestDTO) {
+    public ServiceResponse<TeacherResponseDTO> updateTeacher(UUID id, TeacherRequestDTO teacherRequestDTO) {
         Teacher teacher = teacherRepository.findById(id)
                                            .orElseThrow(
                                                () -> new EntityNotFoundException("Teacher not found with id: " + id));
@@ -88,7 +88,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public ServiceResponse<Void> deleteTeacher(String id) {
+    public ServiceResponse<Void> deleteTeacher(UUID id) {
         if (!teacherRepository.existsById(id)) {
             throw new EntityNotFoundException("Teacher not found with id: " + id);
         }
@@ -105,7 +105,14 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     public void updateEntity(TeacherRequestDTO teacherRequestDTO, Teacher teacher) {
-        teacher.setFirstName(teacherRequestDTO.getFirstName());
-
+        if (teacherRequestDTO.getDepartment() != null) {
+            teacher.setDepartment(teacherRequestDTO.getDepartment());
+        }
+        if (teacherRequestDTO.getQualification() != null) {
+            teacher.setQualification(teacherRequestDTO.getQualification());
+        }
+        if (teacherRequestDTO.getAddress() != null) {
+            teacher.setAddress(teacherRequestDTO.getAddress());
+        }
     }
 }

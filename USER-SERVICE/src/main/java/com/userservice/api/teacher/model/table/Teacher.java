@@ -1,12 +1,12 @@
 package com.userservice.api.teacher.model.table;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "teachers")
@@ -16,12 +16,20 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Teacher {
     @Id
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
+
     private String department;
     private String qualification;
     private String address;
+    
+    // Additional teacher-specific fields
+    @Column(name = "employee_id", unique = true)
+    private String employeeId;
+    
+    private String subject;
+    private String experience;
 } 

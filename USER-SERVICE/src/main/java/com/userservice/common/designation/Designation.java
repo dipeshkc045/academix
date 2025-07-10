@@ -1,0 +1,18 @@
+package com.userservice.common.designation;
+
+public enum Designation {
+    PRINCIPAL,
+    VICE_PRINCIPAL,
+    PROFESSOR,
+    ASSOCIATE_PROFESSOR,
+    ASSISTANT_PROFESSOR,
+    LECTURER,
+    HEAD_OF_DEPARTMENT,
+    ADMINISTRATIVE_OFFICER,
+    LIBRARIAN,
+    ACCOUNTANT,
+    LAB_ASSISTANT,
+    RECEPTIONIST,
+    OFFICE_ASSISTANT,
+    INTERN
+}

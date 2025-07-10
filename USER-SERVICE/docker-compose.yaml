@@ -5,9 +5,9 @@ services:
     image: 'postgres:latest'
     container_name: 'postgres'
     environment:
-      - 'POSTGRES_DB=acedemix'
-      - 'POSTGRES_USER=admin'
-      - 'POSTGRES_PASSWORD=password'
+      POSTGRES_DB: acedemix
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
     ports:
       - '5432:5432'
     networks:
@@ -15,26 +15,20 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "admin"]
+      test: ["CMD-SHELL", "pg_isready -U admin"]
       interval: 10s
       retries: 5
       start_period: 30s
       timeout: 10s
 
   consul:
-    image: 'consul:1.15.4'
-    container_name: 'consul-server'
+    image: consul:1.15.4
     ports:
-      - '8500:8500'
-      - '8600:8600/udp'
-    networks:
-      - academix-net
-
-
+      - "9000:9000"
+    command: "consul agent -dev -client=0.0.0.0 -http-port=9000"
 
 volumes:
   postgres-data:
-
 
 networks:
   academix-net:

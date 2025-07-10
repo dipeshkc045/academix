@@ -2,19 +2,19 @@ package com.userservice.api.student.service;
 
 import com.userservice.api.student.model.request.StudentRequestDTO;
 import com.userservice.api.student.model.response.StudentResponseDTO;
-import com.userservice.api.student.model.table.Student;
 import com.userservice.common.ServiceResponse;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface StudentService {
     ServiceResponse<List<StudentResponseDTO>> getAllStudents();
 
-    ServiceResponse<StudentResponseDTO> getStudentById(String id);
+    ServiceResponse<StudentResponseDTO> getStudentById(UUID id);
 
-    ServiceResponse<StudentResponseDTO> createStudent(Student student);
+    ServiceResponse<StudentResponseDTO> createStudent(StudentRequestDTO student);
 
-    ServiceResponse<StudentResponseDTO> updateStudent(String id, StudentRequestDTO studentRequestDTO);
+    ServiceResponse<StudentResponseDTO> updateStudent(UUID id, StudentRequestDTO studentRequestDTO);
 
-    ServiceResponse<Void> deleteStudent(String id);
+    ServiceResponse<Void> deleteStudent(UUID id);
 } 
